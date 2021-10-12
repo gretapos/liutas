@@ -1,6 +1,6 @@
 // import './App.css';
 
-import Box from './Components/Box';
+import Box from './components/box';
 // import Simple from './Components/Simple';
 
 // const a = 5;
