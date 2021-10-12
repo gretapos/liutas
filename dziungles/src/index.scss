@@ -7,3 +7,12 @@ body {
   align-items: center;
   // height: 100vh;
 }
+
+.blue-squere {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+  width: 300px;
+  height: 300px;
+}
