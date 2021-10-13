@@ -1,32 +1,47 @@
-// import './App.css';
-
-import Box from './components/box';
+import Box from './Components/Circle';
 // import Simple from './Components/Simple';
 
 // const a = 5;
 // const b = 6;
 
 const data = [
-  {
-    ls: '2px',
-    boxColor: 'green',
-    boxNumber: 68
-  },
+
     {
     ls: '1px',
-    boxColor: 'yellow',
-    boxNumber: 45
+    circleColor: 'yellow',
+    circleNumber: 90
   },
-    {
-    ls: '-2px',
-    boxColor: 'white',
-    boxNumber: 90
+  {
+    ls: '1px',
+    circleColor: 'green',
+    circleNumber: 45
   },
-    {
-    ls: '4px',
-    boxColor: 'pink',
-    boxNumber: 101
-  }
+  {
+    ls: '1px',
+    circleColor: 'red',
+    circleNumber: 43
+  },{
+    ls: '1px',
+    circleColor: 'grey',
+    circleNumber: 23
+  },{
+    ls: '1px',
+    circleColor: 'black',
+    circleNumber: 7
+  },{
+    ls: '1px',
+    circleColor: 'brown',
+    circleNumber: 34
+  },{
+    ls: '1px',
+    circleColor: 'pink',
+    circleNumber: 37
+  },
+  {
+    ls: '1px',
+    circleColor: 'blue',
+    circleNumber: 87
+  },
 ];
 
 
@@ -34,7 +49,7 @@ function App() {
 
   return (
     <>
-    {data.map((box, index) => <Box key={index} boxColor={box.boxColor} ls={box.ls} boxNumber={box.boxNumber} />)}
+    {data.map((circle, index) => <Box key={index} circleColor={circle.circleColor} ls={circle.ls} circleNumber={circle.circleNumber} />)}
     </>
   );
 
