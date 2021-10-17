@@ -1,16 +1,14 @@
-import Button from './Components/Button';
+import Clock from "./Components/Clock";
+
 
 function App() {
 
     return (
         <div>
-        <Button buttonText={'Nr.1'}/>
-        <Button buttonText={'Nr.3'}/>
-        <Button buttonText={'Nr.3'}/>
-        <Button buttonText={'Nr.4'}/>
+            <Clock clockTime={new Date().toLocaleTimeString()}/>
         </div>
     );
 
-    }
+}
 
-    export default App
+export default App;
