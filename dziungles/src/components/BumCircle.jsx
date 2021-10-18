@@ -2,12 +2,11 @@ import { Component } from 'react';
 
 
 class BumCircle extends Component {
-
     constructor(props) {
         super();
         this.state = {
-            clock: Date.now(),
-            color: '#' + Math.floor(Math.random()*16777215).toString(16)
+            color: '#' + Math.floor(Math.random()*16777215).toString(16),
+            count: 0,
         };
     }
 
@@ -16,10 +15,11 @@ class BumCircle extends Component {
     }
 
 
-    click = () =>  {
-        this.setState({
-          clock: Date.now(),
-          color: '#' + Math.floor(Math.random()*16777215).toString(16)
+    click = () =>  { 
+    
+       this.setState({
+          color: '#' + Math.floor(Math.random()*16777215).toString(16),
+          count: this.state.count +1
         });
     }
 
@@ -27,15 +27,17 @@ class BumCircle extends Component {
     render () {
         return (
             <>
-            <h1 style={{backgroundColor: this.state.color}}>{this.state.clock}
-            <button onClick={this.click}>CLICK</button>
-            </h1>
-            
+                <div className='bumCircle' style={{backgroundColor: this.state.color}}>
+                <div className='counter' onClick={this.click}>{this.state.count}</div>
+                
+                    
+                </div>
             </>
         )
     }
     
 
 }
+
 
 export default BumCircle;
