@@ -1,16 +1,51 @@
 .black-box {
-    width: 200px;
-    height: 200px;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:3px;
-    padding: 5px;
-  
-    span {
-      color: pink;
-    }
-  
+  width: 200px;
+  height: 200px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  padding: 5px;
+
+  span {
+    color: pink;
   }
-  
+}
+
+
+h3 {
+  text-align: center;
+}
+
+.apskritimai {
+  .apskritimaiContainer {
+    display: flex;
+    flex-direction: column;
+
+    .apskritimas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: yellowgreen;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 20px;
+
+      .counter {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+
+    .apskritimasButton {
+      display: flex;
+      justify-content: center;
+
+      .btn {
+        margin: 10px 20px 10px 10px;
+      }
+    }
+  }
+}
