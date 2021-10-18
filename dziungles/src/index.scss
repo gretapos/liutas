@@ -86,6 +86,7 @@ button {
     border: 0;
     cursor: pointer;
     transition: all .3s ease;
+    margin: 7px;
     &:hover,
     &:focus {
         box-shadow: 0 5px 15px rgba(black, .1);
