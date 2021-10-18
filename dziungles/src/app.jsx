@@ -1,14 +1,15 @@
-import Clock from "./Components/Clock";
+import CowField from "./Components/CowField";
+
 
 
 function App() {
 
-    return (
-        <div>
-            <Clock clockTime={new Date().toLocaleTimeString()}/>
-        </div>
-    );
-
+    return(
+        <>
+            <h3>HeLLo, Cows!</h3>
+            <CowField counterColor={'darkturquoise'}/>
+        </>
+    )
 }
 
 export default App;
