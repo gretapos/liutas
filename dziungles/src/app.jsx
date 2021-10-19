@@ -1,13 +1,22 @@
-import Circle12 from "./Components/Circle12";
+import { useState } from "react";
+import ButtonColorChanger from "./Components/ButtonColorChanger";
+
 
 function App() {
 
+    const [bg, setBg] = useState('black');
+
+    const changeBg = color => {
+        setBg(color)
+    }
+
 
     return (
-        <>
-            <Circle12 color1={'pink'} color2={'yellow'} />
-        </>
+        <div className="sq" style={{backgroundColor:bg}}>
+            <ButtonColorChanger kasNors={changeBg}></ButtonColorChanger>
+        </div>
     )
 }
 
 export default App;
+
