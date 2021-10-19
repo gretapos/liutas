@@ -1,13 +1,11 @@
-import Apskritimai from "./Components/Apskritimai";
-
-
+import Circle12 from "./Components/Circle12";
 
 function App() {
 
-    return(
+
+    return (
         <>
-            <h3>Namu darbas 3</h3>
-            <Apskritimai/>
+            <Circle12 color1={'pink'} color2={'yellow'} />
         </>
     )
 }
