@@ -1,16 +1,19 @@
-import CheckBoxInput from "./Components/CheckBoxInput";
-import SelectInput from "./Components/SelectInput";
-import TextInput from "./Components/TextInput";
+import TextNd from "./Components/TextNd";
+import SelectNd from "./Components/SelectNd";
+import ButtonNd from "./Components/ButtonNd";
+
+
 
 function App() {
 
-
+    
 
     return (
         <>
-            <TextInput></TextInput>
-            <SelectInput></SelectInput>
-            <CheckBoxInput></CheckBoxInput>
+
+            <TextNd></TextNd>
+            <SelectNd></SelectNd>
+            <ButtonNd></ButtonNd>
         </>
     )
 }
