@@ -1,28 +1,33 @@
-import ZoneEnter from "./Components/ZoneEnter"
-import ZoneShow from "./Components/ZoneShow"
+
 import { useState } from "react";
-
-
+import FieldAnimal from "./Components/FieldAnimal";
 
 
 function App() {
 
-    const [show, setShow] = useState ({color: '', shape: '', count:[]})
-    
-    const showIt = (data) => {
-        data.count = new Array(parseInt(data.count)).fill(null);
-        setShow(data);  
+    const [field, setField] = useState([])
 
-
+    const add = (what) => {
+        const fieldCopy = field.slice();
+        fieldCopy.push({animal:what});
+        setField(fieldCopy);
+        console.log(fieldCopy);
     }
 
-    return (
-        <div className="zone">
-            <ZoneShow show={show}></ZoneShow>
-            <ZoneEnter showIt={showIt}></ZoneEnter>
+    // useEffect(() => {
+    //     console.log('susirenderino')
+    // }, []);
 
+    return (
+        <div className="field">
+        <div>
+          {field.map((fieldAnimal, i)=><FieldAnimal key={i} fieldAnimal={fieldAnimal}></FieldAnimal>)}
         </div>
-    )
+        <button onClick={() => add('cow')}>Add cow</button>
+        <button onClick={() => add('sheep')}>Add sheep</button>
+        </div>
+    );
+
 }
 
 export default App;

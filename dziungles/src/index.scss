@@ -189,3 +189,29 @@ button {
     }
 
 }
+
+.field {
+    width: 100%;
+    box-sizing: border-box;
+    div {
+        background-color: lightgreen;
+        margin: 20px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        .cow {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 4px dotted deeppink;
+            margin: 10px;
+        }
+        .sheep {
+            height: 100px;
+            width: 100px;
+            border: 4px dotted darkturquoise;
+            margin: 10px;
+        }
+    }
+}
