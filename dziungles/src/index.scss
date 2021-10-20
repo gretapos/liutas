@@ -213,5 +213,26 @@ button {
             border: 4px dotted darkturquoise;
             margin: 10px;
         }
+        .horse {
+            height: 100px;
+            width: 150px;
+            border: 4px dotted darkturquoise;
+            margin: 10px;
+        }
     }
 }
+.left-field,
+.right-field {
+  overflow-y: scroll;
+  width: 40%;
+  height: calc(100vh - 110px);
+  background-color: darkseagreen;
+  border: 5px dashed brown;
+}
+
+.left-field {
+    float: left;
+  }
+  .right-field {
+    float: right;
+  }

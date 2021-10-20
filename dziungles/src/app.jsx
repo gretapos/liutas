@@ -1,33 +1,56 @@
-
 import { useState } from "react";
-import FieldAnimal from "./Components/FieldAnimal";
+import Animals from "./Components/Animals";
 
 
 function App() {
 
-    const [field, setField] = useState([])
+    const [animal, setAnimal] = useState([])
+    const [field, setField] = useState('left')
 
-    const add = (what) => {
-        const fieldCopy = field.slice();
-        fieldCopy.push({animal:what});
-        setField(fieldCopy);
-        console.log(fieldCopy);
+    const addAnimal = (a) => {
+        const animalCopy = animal.slice();
+        animalCopy.push({ animal: a, field: field });
+        setAnimal(animalCopy);
     }
 
-    // useEffect(() => {
-    //     console.log('susirenderino')
-    // }, []);
+    const showField = (f) => {
+        setField(f);
+    }
 
     return (
-        <div className="field">
-        <div>
-          {field.map((fieldAnimal, i)=><FieldAnimal key={i} fieldAnimal={fieldAnimal}></FieldAnimal>)}
-        </div>
-        <button onClick={() => add('cow')}>Add cow</button>
-        <button onClick={() => add('sheep')}>Add sheep</button>
-        </div>
-    );
+        <>
+            <div>
+                <div className="field">
+                    <div className='left-field'>
+                        {animal.map((e, ind) => {
+                            if (e.field === 'left')
+                                return (<Animals key={ind} animal={e.animal} />);
+                            return '';
+                        }
+                        )}
+                    </div>
+                    <div className="right-field">
+                        {animal.map((e, ind) => {
+                            if (e.field === 'right')
+                                return (<Animals key={ind} animal={e.animal} />);
+                            return '';
+                        }
+                        )}
+                    </div>
 
+                    <div>
+                        <div className="field-buttons">
+                            <button onClick={() => showField('left')}>Left</button>
+                            <button onClick={() => showField('right')}>Right</button>
+                        </div>
+                        <button onClick={() => addAnimal('cow')}>Add cow</button>
+                        <button onClick={() => addAnimal('sheep')}>Add sheep</button>
+                        <button onClick={() => addAnimal('horse')}>Add horse</button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default App;
