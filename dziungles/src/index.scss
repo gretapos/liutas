@@ -208,41 +208,44 @@ button {
         width: 30%;
         box-sizing: border-box;
         .cow {
-            height: 140px;
-            width: 140px;
+            height: 270px;
+            width: 270px;
             border-radius: 50%;
             border: 4px dotted deeppink;
             margin: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         .sheep {
-            height: 140px;
-            width: 140px;
+            height: 270px;
+            width: 270px;
             border: 4px dotted darkturquoise;
             margin: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         .horse {
-            height: 100px;
-            width: 100px;
+            height: 270px;
+            width: 270px;
             border: 4px dotted darkorchid;
-            margin: 30px;
-            transform: rotate(45deg);
+            margin: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            h2 {
-                transform: rotate(-45deg);
-            }
-            button {
-                transform: rotate(-45deg);
-                margin-left: 84px;
-            }
+            flex-direction: column;
+            border-radius: 20px;
         }
+    }
+    input {
+        outline: none;
+        height: 20px;
+        border: none;
+        margin: 5px 0;
+        font-size: 18px;
     }
 }
 
