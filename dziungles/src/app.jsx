@@ -7,6 +7,7 @@ function App() {
     const [field, setField] = useState([]);
     const [fieldNamber, setFieldNamber] = useState(1);
     const [weight, setWeight] = useState('');
+    const [date, setDate] = useState('');
     const [fieldType, setFieldType] = useState('cow');
 
     const allAnimals = useRef(0);
@@ -15,6 +16,10 @@ function App() {
 
     const handleWeight = e => {
         setWeight(e.target.value);
+    }
+
+    const handleDate = e => {
+        setDate(e.target.value);
     }
 
     const selectfieldType = e => {
@@ -61,6 +66,13 @@ function App() {
         const fieldCopy = field.slice();
         const i = fieldCopy.findIndex(e => e.id === id);
         fieldCopy[i].weight = parseFloat(w);
+        setField(fieldCopy);
+        localStorage.setItem('animals', JSON.stringify(fieldCopy))
+    }
+    const addDate = (id, d) => {
+        const fieldCopy = field.slice();
+        const i = fieldCopy.findIndex(e => e.id === id);
+        fieldCopy[i].date = parseFloat(d);
         setField(fieldCopy);
         localStorage.setItem('animals', JSON.stringify(fieldCopy))
     }
@@ -117,13 +129,13 @@ function App() {
             </div>
             <div className="field">
                 <div className="field__part">
-                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={1} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight}></FieldAnimal>)}
+                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={1} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight} addDate={addDate}></FieldAnimal>)}
                 </div>
                 <div className="field__part">
-                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={2} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight}></FieldAnimal>)}
+                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={2} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight} addDate={addDate}></FieldAnimal>)}
                 </div>
                 <div className="field__part">
-                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={3} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight}></FieldAnimal>)}
+                    {field.map((fieldAnimal, i) => <FieldAnimal key={i} field={3} fieldAnimal={fieldAnimal} goHome={goHome} addWeight={addWeight} addDate={addDate}></FieldAnimal>)}
                 </div>
             </div>
             <div className="new">
@@ -143,6 +155,9 @@ function App() {
                 <span>Animal weight</span>
                 <input type="text" onChange={handleWeight} value={weight} />
                 <button onClick={add}>Add new animal</button>
+                <span>Animal feed</span>
+                <input type="date" onChange={handleDate} value={date} />
+                <button onClick={add}>Add new date</button>
             </div>
         </>
     );
