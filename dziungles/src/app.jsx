@@ -42,6 +42,7 @@ function App() {
             id: idGenerator(),
             animal: fieldType,
             weight: weight,
+            date: date,
             field: parseInt(fieldNamber)
         });
         setField(fieldCopy);
@@ -72,7 +73,7 @@ function App() {
     const addDate = (id, d) => {
         const fieldCopy = field.slice();
         const i = fieldCopy.findIndex(e => e.id === id);
-        fieldCopy[i].date = parseFloat(d);
+        fieldCopy[i].date = d;
         setField(fieldCopy);
         localStorage.setItem('animals', JSON.stringify(fieldCopy))
     }
@@ -154,14 +155,12 @@ function App() {
                 </select>
                 <span>Animal weight</span>
                 <input type="text" onChange={handleWeight} value={weight} />
-                <button onClick={add}>Add new animal</button>
                 <span>Animal feed</span>
                 <input type="date" onChange={handleDate} value={date} />
-                <button onClick={add}>Add new date</button>
+                <button onClick={add}>Add new animal</button>
             </div>
         </>
     );
-
 }
 
 export default App;
