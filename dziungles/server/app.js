@@ -21,12 +21,14 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+
+//Routing
 app.get('/', (req, res) => {
-  res.send('Labas, ka tu?')
+  res.send('Labas, ka tu? As tai nieko.')
 })
 
-app.get('/labas/', (req, res) =>{
-  
+app.get('/labas/:id', (req, res) => {
+  res.send(`Pats tu ${req.params.id}.`)
 })
 
 //app.listen(port, () => {
