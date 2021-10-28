@@ -10,11 +10,11 @@ app.use(express.urlencoded({
 }))
 app.use(express.json());
 
-
 const con = mysql.createConnection({
     host: "localhost",
-    user: "zmones",
-    password: "zmones1234"
+    user: "root",
+    password: "Root1234",
+    database: "zoo"
 });
 
 con.connect(function(err) {
@@ -35,8 +35,19 @@ app.get('/test', (req, res) => {
     res.send(JSON.stringify({ test: 'OK' }))
 })
 
-
-
+// Visi gyvunai
+app.get('/zverys', (req, res) => {
+  const sql = `
+      SELECT *
+      FROM zverys
+  `;
+  con.query(sql, (err, results) => {
+      if (err) {
+          throw err;
+      }
+      res.send(results);
+  })
+})
 
 
 
