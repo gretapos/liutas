@@ -36,18 +36,84 @@ app.get('/test', (req, res) => {
 })
 
 // Visi gyvunai
-app.get('/zverys', (req, res) => {
-  const sql = `
-      SELECT *
-      FROM zverys
-  `;
-  con.query(sql, (err, results) => {
-      if (err) {
-          throw err;
-      }
-      res.send(results);
-  })
+app.get('/animals', (req, res) => {
+    const sql = `
+        SELECT *
+        FROM animals
+    `;
+    con.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
 })
+
+// Prideti gyvuna
+// INSERT INTO table_name (column1, column2, column3, ...)
+// VALUES (value1, value2, value3, ...);
+app.post('/animals', (req, res) => {
+    const sql = `
+        INSERT INTO zverys
+        (name, type, weight, born)
+        VALUES (?, ?, ?, ?)
+    `;
+    con.query(sql, [
+        req.body.name,
+        req.body.type,
+        req.body.weight,
+        req.body.born
+    ], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+// Redaguoja gyvuna
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
+app.put('/zverys/:id', (req, res) => {
+    const sql = `
+        UPDATE zverys
+        SET name = ?, type = ?, weight = ?, born = ?
+        WHERE id = ?
+    `;
+    con.query(sql, [
+        req.body.name,
+        req.body.type,
+        req.body.weight,
+        req.body.born,
+        req.params.id
+    ], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+// Trina gyvuna
+// DELETE FROM table_name
+// WHERE some_column = some_value
+app.delete('/zverys/:id', (req, res) => {
+    const sql = `
+        DELETE FROM zverys
+        WHERE id = ?
+        `;
+    con.query(sql, [req.params.id], (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
+
+
+
 
 
 
