@@ -18,7 +18,7 @@ function App() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3003/animals')
+        axios.get('http://localhost:3003/zverys')
             .then(res => {
                 setAnimals(res.data);
                 console.log(res.data);
@@ -26,7 +26,7 @@ function App() {
     }, [lastUpdate])
 
     const create = animal => {
-        axios.post('http://localhost:3003/animals', animal)
+        axios.post('http://localhost:3003/zverys', animal)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
@@ -35,7 +35,7 @@ function App() {
 
     const edit = (animal, id) => {
         setShowModal(false);
-        axios.put('http://localhost:3003/animals/'+id, animal)
+        axios.put('http://localhost:3003/zverys/'+id, animal)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
@@ -44,7 +44,7 @@ function App() {
 
     const remove = (id) => {
         setShowModal(false);
-        axios.delete('http://localhost:3003/animals/'+id)
+        axios.delete('http://localhost:3003/zverys/'+id)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());

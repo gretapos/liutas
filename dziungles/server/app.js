@@ -36,10 +36,10 @@ app.get('/test', (req, res) => {
 })
 
 // Visi gyvunai
-app.get('/animals', (req, res) => {
+app.get('/zverys', (req, res) => {
     const sql = `
         SELECT *
-        FROM animals
+        FROM zverys
     `;
     con.query(sql, (err, results) => {
         if (err) {
