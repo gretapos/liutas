@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3003
+const port = 3006
 const mysql = require('mysql')
 const cors = require('cors')
 app.use(cors())
@@ -52,7 +52,7 @@ app.get('/zverys', (req, res) => {
 // Prideti gyvuna
 // INSERT INTO table_name (column1, column2, column3, ...)
 // VALUES (value1, value2, value3, ...);
-app.post('/animals', (req, res) => {
+app.post('/zverys', (req, res) => {
     const sql = `
         INSERT INTO zverys
         (name, type, weight, born)
