@@ -4,6 +4,7 @@ import ZooCreate from "./Components/ZooCreate";
 import ZooList from "./Components/ZooList";
 import ZooModal from "./Components/ZooModal";
 import ZooNav from "./Components/ZooNav";
+import animalSort from "./Common/animalsSort";
 function App() {
 
 
@@ -19,10 +20,17 @@ function App() {
     const [types, setTypes] = useState([])
     const [filterBy, setFilterBy] = useState('')
     const [searchBy, setSearchBy] = useState('')
+    const [sortBy, setSortBy] = useState('')
 
     useEffect(() => {
+        if (sortBy) {
+            setAnimals(animalSort(animals, sortBy));
+        }
+    }, [sortBy])
+    
+    useEffect(() => {
         if (filterBy) {
-        axios.get('http://localhost:3006/zverys-filter/'+filterBy)
+        axios.get('http://localhost:3005/zverys-filter/'+filterBy)
             .then(res => {
                 setAnimals(res.data);
                 console.log(res.data);
@@ -33,7 +41,7 @@ function App() {
 
     useEffect(() => {
         if (searchBy) {
-        axios.get('http://localhost:3006/zverys-name/?s='+searchBy)
+        axios.get('http://localhost:3005/zverys-name/?s='+searchBy)
             .then(res => {
                 setAnimals(res.data);
                 console.log(res.data);
@@ -43,7 +51,7 @@ function App() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3006/zverys')
+        axios.get('http://localhost:3005/zverys')
             .then(res => {
                 setAnimals(res.data);
                 console.log(res.data);
@@ -51,7 +59,7 @@ function App() {
     }, [lastUpdate])
 
     useEffect(() => {
-        axios.get('http://localhost:3003/zverys-type')
+        axios.get('http://localhost:3005/zverys-type')
             .then(res => {
                 setTypes(res.data);
                 console.log(res.data);
@@ -59,7 +67,7 @@ function App() {
     }, [lastUpdate])
 
     const create = animal => {
-        axios.post('http://localhost:3006/zverys', animal)
+        axios.post('http://localhost:3005/zverys', animal)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
@@ -68,7 +76,7 @@ function App() {
 
     const edit = (animal, id) => {
         setShowModal(false);
-        axios.put('http://localhost:3006/zverys/'+id, animal)
+        axios.put('http://localhost:3005/zverys/'+id, animal)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
@@ -77,7 +85,7 @@ function App() {
 
     const remove = (id) => {
         setShowModal(false);
-        axios.delete('http://localhost:3006/zverys/'+id)
+        axios.delete('http://localhost:3005/zverys/'+id)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
@@ -100,7 +108,7 @@ function App() {
 
     return (
         <div className="zoo">
-            <ZooNav types={types} search={setSearchBy} filter={setFilterBy} reset={reset}></ZooNav>
+            <ZooNav types={types} search={setSearchBy} filter={setFilterBy} sort={setSortBy} reset={reset}></ZooNav>
             <ZooCreate create={create}></ZooCreate>
             <ZooList animals={animals} modal={modal}></ZooList>
             <ZooModal edit={edit} remove={remove} hide={hide} animal={modalAnimal} showModal={showModal}></ZooModal>
