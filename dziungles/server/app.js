@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3005
+const port = 3003
 const mysql = require('mysql')
 const cors = require('cors')
 app.use(cors())
@@ -10,11 +10,12 @@ app.use(express.urlencoded({
 }))
 app.use(express.json());
 
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Root1234",
-    database: "zoo"
+    database: "zoo",
+    password: "Root1234"
 });
 
 con.connect(function(err) {
@@ -36,10 +37,10 @@ app.get('/test', (req, res) => {
 })
 
 // Visi gyvunai
-app.get('/zverys', (req, res) => {
+app.get('/animals', (req, res) => {
     const sql = `
         SELECT *
-        FROM zverys
+        FROM animals
     `;
     con.query(sql, (err, results) => {
         if (err) {
@@ -52,9 +53,9 @@ app.get('/zverys', (req, res) => {
 // Prideti gyvuna
 // INSERT INTO table_name (column1, column2, column3, ...)
 // VALUES (value1, value2, value3, ...);
-app.post('/zverys', (req, res) => {
+app.post('/animals', (req, res) => {
     const sql = `
-        INSERT INTO zverys
+        INSERT INTO animals
         (name, type, weight, born)
         VALUES (?, ?, ?, ?)
     `;
@@ -75,9 +76,9 @@ app.post('/zverys', (req, res) => {
 // UPDATE table_name
 // SET column1 = value1, column2 = value2, ...
 // WHERE condition;
-app.put('/zverys/:id', (req, res) => {
+app.put('/animals/:id', (req, res) => {
     const sql = `
-        UPDATE zverys
+        UPDATE animals
         SET name = ?, type = ?, weight = ?, born = ?
         WHERE id = ?
     `;
@@ -98,9 +99,9 @@ app.put('/zverys/:id', (req, res) => {
 // Trina gyvuna
 // DELETE FROM table_name
 // WHERE some_column = some_value
-app.delete('/zverys/:id', (req, res) => {
+app.delete('/animals/:id', (req, res) => {
     const sql = `
-        DELETE FROM zverys
+        DELETE FROM animals
         WHERE id = ?
         `;
     con.query(sql, [req.params.id], (err, result) => {
@@ -114,10 +115,10 @@ app.delete('/zverys/:id', (req, res) => {
 // Randa visus skirtingus gyvunu tipus
 // SELECT DISTINCT column1, column2, ...
 // FROM table_name;
-app.get('/zverys-type', (req, res) => {
+app.get('/animals-type', (req, res) => {
     const sql = `
         SELECT DISTINCT type
-        FROM zverys
+        FROM animals
     `;
     con.query(sql, (err, results) => {
         if (err) {
@@ -128,10 +129,10 @@ app.get('/zverys-type', (req, res) => {
 })
 
 // rodo tik tam tikro tipo gyvunus
-app.get('/zverys-filter/:t', (req, res) => {
+app.get('/animals-filter/:t', (req, res) => {
     const sql = `
         SELECT *
-        FROM zverys
+        FROM animals
         WHERE type = ?
     `;
     con.query(sql, [req.params.t], (err, results) => {
@@ -146,10 +147,10 @@ app.get('/zverys-filter/:t', (req, res) => {
 // SELECT column1, column2, ...
 // FROM table_name
 // WHERE columnN LIKE pattern;
-app.get('/zverys-name', (req, res) => {
+app.get('/animals-name', (req, res) => {
     const sql = `
         SELECT *
-        FROM zverys
+        FROM animals
         WHERE name LIKE ?
     `;
     con.query(sql, ['%' + req.query.s + '%'], (err, results) => {
@@ -159,6 +160,49 @@ app.get('/zverys-name', (req, res) => {
         res.send(results);
     })
 })
+
+// Bendra gyvunu statistika
+// SELECT COUNT(column_name)
+// FROM table_name
+// WHERE condition;
+app.get('/stats', (req, res) => {
+    const sql = `
+        SELECT COUNT(id) as count, 
+        SUM(weight) as weight,
+        AVG(weight) as average
+        FROM animals
+    `;
+    con.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+
+// Grupine gyvunu statistika
+// SELECT column_name(s)
+// FROM table_name
+// WHERE condition
+// GROUP BY column_name(s)
+// ORDER BY column_name(s);
+app.get('/group-stats', (req, res) => {
+    const sql = `
+        SELECT COUNT(id) as count, type
+        FROM animals
+        GROUP BY type
+        ORDER BY COUNT(id) DESC, type
+    `;
+    con.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+
 
 
 app.listen(port, () => {
